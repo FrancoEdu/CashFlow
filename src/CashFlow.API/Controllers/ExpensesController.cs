@@ -16,9 +16,9 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Register([FromBody] ExpenseRegisterRequestJson req)
+    public async Task<IActionResult> Register([FromBody] ExpenseRegisterRequestJson req)
     {
-        var response = _registerExpenseUseCase.Execute(req);   
-        return Ok(response);
+        await _registerExpenseUseCase.Execute(req);   
+        return Ok();
     }
 }

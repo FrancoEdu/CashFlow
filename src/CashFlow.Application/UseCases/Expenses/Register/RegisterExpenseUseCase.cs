@@ -3,17 +3,21 @@ using CashFlow.Communication.Requests;
 using CashFlow.Exception.ExceptionBase;
 using CashFlow.Communication.Response.Expense;
 using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Repositories;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
     private readonly IExpenseRepository _expenseRepository;
-    public RegisterExpenseUseCase(IExpenseRepository expenseRepository)
+    private readonly IUnitOfWork _unitOfWork;
+
+    public RegisterExpenseUseCase(IExpenseRepository expenseRepository, IUnitOfWork unitOfWork)
     {
         _expenseRepository = expenseRepository;
+        _unitOfWork = unitOfWork;
     }
 
-    public ResponseRegisterExpenseJson Execute(ExpenseRegisterRequestJson request)
+    public async Task<ResponseRegisterExpenseJson> Execute(ExpenseRegisterRequestJson request)
     {
         Validate(request);
 
@@ -26,7 +30,9 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
             Title = request.Title,
         };
 
-        _expenseRepository.Add(expense);
+        await _expenseRepository.Add(expense);
+        await _unitOfWork.Commit();
+
         return new ResponseRegisterExpenseJson();
     }
 
