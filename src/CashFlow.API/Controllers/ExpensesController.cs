@@ -1,7 +1,5 @@
 ﻿using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Requests;
-using CashFlow.Communication.Response.Error;
-using CashFlow.Exception.ExceptionBase;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.API.Controllers;
@@ -10,11 +8,17 @@ namespace CashFlow.API.Controllers;
 [ApiController]
 public class ExpensesController : ControllerBase
 {
+    private readonly IRegisterExpenseUseCase _registerExpenseUseCase;
+
+    public ExpensesController(IRegisterExpenseUseCase registerExpenseUseCase)
+    {
+        _registerExpenseUseCase = registerExpenseUseCase;
+    }
+
     [HttpPost]
     public IActionResult Register([FromBody] ExpenseRegisterRequestJson req)
     {
-        var useCase = new RegisterExpenseUseCase();
-        var response = useCase.Execute(req);
+        var response = _registerExpenseUseCase.Execute(req);   
         return Ok(response);
     }
 }
