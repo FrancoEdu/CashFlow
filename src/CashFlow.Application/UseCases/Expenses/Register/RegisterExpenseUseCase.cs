@@ -1,10 +1,10 @@
 ﻿using CashFlow.Domain.Entities;
-using CashFlow.Communication.Requests;
 using CashFlow.Exception.ExceptionBase;
 using CashFlow.Communication.Response.Expense;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Repositories;
 using AutoMapper;
+using CashFlow.Communication.Requests.Expense;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 public class RegisterExpenseUseCase : IRegisterExpenseUseCase

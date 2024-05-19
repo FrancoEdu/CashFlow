@@ -1,6 +1,6 @@
 ﻿using Bogus;
 using CashFlow.Communication.Enums;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expense;
 
 namespace CommonTestUtilities.Requests;
 public class ExpenseRegisterRequestJsonBuilder

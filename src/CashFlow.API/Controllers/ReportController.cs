@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CashFlow.Communication.Requests.Report;
+using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
 namespace CashFlow.API.Controllers;
@@ -10,7 +11,7 @@ public class ReportController : ControllerBase
     [Route("excel")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExcel()
+    public async Task<IActionResult> GetExcel([FromHeader] DateOnly month)
     {
         byte[] file = new byte[1];
 
