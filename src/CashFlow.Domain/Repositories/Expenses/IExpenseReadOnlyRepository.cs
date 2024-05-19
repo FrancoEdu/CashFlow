@@ -5,4 +5,5 @@ public interface IExpenseReadOnlyRepository
 {
     Task<List<Expense>> GetAll();
     Task<Expense?> GetById(long id);
+    Task<Expense?> GetByIdWithOutAsNoTracking(long id);
 }

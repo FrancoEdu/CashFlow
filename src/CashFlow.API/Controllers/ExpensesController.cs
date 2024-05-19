@@ -2,10 +2,10 @@
 using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Expenses.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response.Error;
 using CashFlow.Communication.Response.Expense;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.API.Controllers;
@@ -18,17 +18,20 @@ public class ExpensesController : ControllerBase
     private readonly IGetAllExpensesUseCase _getAllExpenseUseCase;
     private readonly IGetByIdUseCase _getByIdExpenseUseCase;
     private readonly IDeleteExpenseUseCase _deleteExpenseUseCase;
+    private readonly IUpdateExpensesUseCase _updateExpenseUseCase;
 
     public ExpensesController(
         IRegisterExpenseUseCase registerExpenseUseCase,
         IGetAllExpensesUseCase getAllExpenseUseCase,
         IGetByIdUseCase getByIdExpenseUseCase,
-        IDeleteExpenseUseCase deleteExpenseUseCase)
+        IDeleteExpenseUseCase deleteExpenseUseCase,
+        IUpdateExpensesUseCase updateExpenseUseCase)
     {
         _registerExpenseUseCase = registerExpenseUseCase;
         _getAllExpenseUseCase = getAllExpenseUseCase;
         _getByIdExpenseUseCase = getByIdExpenseUseCase;
         _deleteExpenseUseCase = deleteExpenseUseCase;
+        _updateExpenseUseCase = updateExpenseUseCase;
     }
 
     [HttpPost]
@@ -65,6 +68,17 @@ public class ExpensesController : ControllerBase
     public async Task<IActionResult> Delete(long expenseId)
     {
         await _deleteExpenseUseCase.Execute(expenseId);
+        return NoContent();
+    }
+    
+    [HttpPut]
+    [Route("{expenseId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Update(long expenseId, [FromBody] ExpenseUpdateRequestJson expense)
+    {
+        await _updateExpenseUseCase.Execute(expenseId, expense);
         return NoContent();
     }
 }
