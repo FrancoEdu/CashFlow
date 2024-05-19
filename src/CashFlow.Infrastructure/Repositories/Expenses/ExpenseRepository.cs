@@ -18,6 +18,17 @@ internal class ExpenseRepository : IExpenseWriteOnlyRepository, IExpenseReadOnly
         await _context.Expenses.AddAsync(expense);
     }
 
+    public async Task<bool> Delete(long id)
+    {
+        var result = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+        if (result is null)
+        {
+            return false;
+        }
+        _context.Expenses.Remove(result);
+        return true;
+    }
+
     public async Task<List<Expense>> GetAll()
     {
         return await _context.Expenses.AsNoTracking().ToListAsync();
