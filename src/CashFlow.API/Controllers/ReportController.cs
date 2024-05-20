@@ -1,5 +1,4 @@
 ﻿using CashFlow.Application.UseCases.Report.Excel;
-using CashFlow.Communication.Requests.Report;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
