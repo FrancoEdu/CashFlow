@@ -117,22 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AMOUNT_GREATHER_THAN_ZERO" xml:space="preserve">
-    <value>O valor deve ser maior que zero.</value>
+  <data name="AMOUNT" xml:space="preserve">
+    <value>Amount</value>
   </data>
-  <data name="EXPENSE_DATE_FUTURE" xml:space="preserve">
-    <value>As despesas não podem ser para o futuro.</value>
+  <data name="CASH" xml:space="preserve">
+    <value>Cash</value>
   </data>
-  <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
-    <value>Despesa não encontrada.</value>
+  <data name="CREDIT_CARD" xml:space="preserve">
+    <value>Credit card</value>
   </data>
-  <data name="PAYMENT_TYPE_NOT_VALID" xml:space="preserve">
-    <value>O tipo de pagamento não é válido.</value>
+  <data name="DATE" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="TITLE_IS_REQUIRED" xml:space="preserve">
-    <value>O título é obrigatório.</value>
+  <data name="DEBIT_CARD" xml:space="preserve">
+    <value>Debit card</value>
   </data>
-  <data name="UNKNOWN_ERROR" xml:space="preserve">
-    <value>Erro desconhecido.</value>
+  <data name="DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ELETRONIC_TRANSFER" xml:space="preserve">
+    <value>Eletronic transfer</value>
+  </data>
+  <data name="PAYMENT_TYPE" xml:space="preserve">
+    <value>Payment type</value>
+  </data>
+  <data name="PAYMENT_TYPE_NOT_FOUND" xml:space="preserve">
+    <value>Payment type not found</value>
+  </data>
+  <data name="TITLE" xml:space="preserve">
+    <value>Title</value>
   </data>
 </root>

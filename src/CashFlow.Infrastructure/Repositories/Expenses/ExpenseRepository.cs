@@ -20,7 +20,9 @@ internal class ExpenseRepository : IExpenseWriteOnlyRepository, IExpenseReadOnly
 
     public async Task<bool> Delete(long id)
     {
-        var result = await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+        var result = await _context
+            .Expenses
+            .FirstOrDefaultAsync(e => e.Id == id);
         if (result is null)
         {
             return false;
@@ -31,17 +33,36 @@ internal class ExpenseRepository : IExpenseWriteOnlyRepository, IExpenseReadOnly
 
     public async Task<List<Expense>> GetAll()
     {
-        return await _context.Expenses.AsNoTracking().ToListAsync();
+        return await _context
+            .Expenses
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    public async Task<List<Expense>> GetAllExpensesByMonth(DateOnly date)
+    {
+        return await _context
+            .Expenses
+            .AsNoTracking()
+            .Where(x => x.Date.Month == date.Month && x.Date.Year == date.Year)
+            .OrderBy(e => e.Date)
+            .ThenByDescending(e => e.Amount)
+            .ToListAsync();
     }
 
     public async Task<Expense?> GetById(long id)
     {
-        return await _context.Expenses.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        return await _context
+            .Expenses
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<Expense?> GetByIdWithOutAsNoTracking(long id)
     {
-       return await _context.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+       return await _context
+            .Expenses
+            .FirstOrDefaultAsync(e => e.Id == id);
     }
 
     public void Update(Expense expense)
