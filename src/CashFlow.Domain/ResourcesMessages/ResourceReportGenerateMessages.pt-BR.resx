@@ -120,6 +120,9 @@
   <data name="AMOUNT" xml:space="preserve">
     <value>Saldo</value>
   </data>
+  <data name="AUTHOR_NAME" xml:space="preserve">
+    <value>Eduardo Franco</value>
+  </data>
   <data name="CASH" xml:space="preserve">
     <value>Dinheiro</value>
   </data>
@@ -138,6 +141,9 @@
   <data name="ELETRONIC_TRANSFER" xml:space="preserve">
     <value>Tranferência eletrônica</value>
   </data>
+  <data name="EXPENSES_FOR" xml:space="preserve">
+    <value>Despesas para</value>
+  </data>
   <data name="PAYMENT_TYPE" xml:space="preserve">
     <value>Tipo de pagamento</value>
   </data>
@@ -146,5 +152,8 @@
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>Título</value>
+  </data>
+  <data name="TOTAL_SPENT_IN" xml:space="preserve">
+    <value>Total gasto em {0}</value>
   </data>
 </root>

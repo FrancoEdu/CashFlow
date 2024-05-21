@@ -70,6 +70,15 @@ namespace CashFlow.Domain.ResourcesMessages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Eduardo Franco.
+        /// </summary>
+        public static string AUTHOR_NAME {
+            get {
+                return ResourceManager.GetString("AUTHOR_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Cash.
         /// </summary>
         public static string CASH {
@@ -124,6 +133,15 @@ namespace CashFlow.Domain.ResourcesMessages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Expenses for.
+        /// </summary>
+        public static string EXPENSES_FOR {
+            get {
+                return ResourceManager.GetString("EXPENSES_FOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Payment type.
         /// </summary>
         public static string PAYMENT_TYPE {
@@ -147,6 +165,15 @@ namespace CashFlow.Domain.ResourcesMessages {
         public static string TITLE {
             get {
                 return ResourceManager.GetString("TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Total spent in {0}.
+        /// </summary>
+        public static string TOTAL_SPENT_IN {
+            get {
+                return ResourceManager.GetString("TOTAL_SPENT_IN", resourceCulture);
             }
         }
     }
