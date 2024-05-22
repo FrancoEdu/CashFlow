@@ -1,0 +1,22 @@
+name: Continuous Integration
+
+on: [pull_request, push, issue]
+
+jobs:
+  continous-integration:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+    # Execute all unit tests in the solution
+    - name: Execute unit tests
+      run: dotnet test
