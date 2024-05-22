@@ -1,6 +1,6 @@
 name: Continuous Integration
 
-on: [pull_request, push, issue]
+on: [pull_request, push, issues]
 
 jobs:
   continous-integration:
