@@ -6,11 +6,13 @@ using CashFlow.Application.UseCases.Expenses.Update;
 using CashFlow.Communication.Requests.Expense;
 using CashFlow.Communication.Response.Error;
 using CashFlow.Communication.Response.Expense;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.API.Controllers;
 
 [Route("api/expenses")]
+[Authorize]
 [ApiController]
 public class ExpensesController : ControllerBase
 {

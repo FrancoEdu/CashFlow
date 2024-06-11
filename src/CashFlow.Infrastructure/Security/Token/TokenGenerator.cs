@@ -17,6 +17,11 @@ public class TokenGenerator : ITokenGenerator
         _expirationTimeMinutes = expirationTimeMinutes;
     }
 
+    public DateTime ExpiresTime()
+    {
+        return DateTime.UtcNow.AddMinutes(_expirationTimeMinutes);
+    }
+
     public string GenerateToken(User user)
     {
         var claims = new List<Claim>()

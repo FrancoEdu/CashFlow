@@ -8,4 +8,6 @@ public class Criptography : IPasswordEncripter
     {
         return HashPassword(password);
     }
+
+    public bool VerifyEncrypt(string password, string hash) => Verify(password, hash);
 }

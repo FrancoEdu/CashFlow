@@ -8,9 +8,12 @@ using CashFlow.Infrastructure.Repositories.Expenses;
 using CashFlow.Infrastructure.Repositories.User;
 using CashFlow.Infrastructure.Security.Criptographys;
 using CashFlow.Infrastructure.Security.Token;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace CashFlow.Infrastructure;
 public static class DependencyInjectionExtension
@@ -20,6 +23,7 @@ public static class DependencyInjectionExtension
         AddDbContext(services, configuration);
         AddRepositories(services);
         AddToken(services, configuration);
+        AddAuthentication(services, configuration);
     }
 
     #region Private Methods
@@ -55,5 +59,28 @@ public static class DependencyInjectionExtension
         services.AddScoped<ITokenGenerator>(config => new TokenGenerator(signinKey!, expirationTimeMinutes));
     }
 
+    private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+    {
+        var signinKey = configuration.GetValue<string>("Settings:Jwt:SigninKey");
+
+        services.AddAuthentication(opt =>
+        {
+            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(opt =>
+        {
+            opt.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+
+                IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(signinKey!)),
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+    }
     #endregion Private Methods
 }

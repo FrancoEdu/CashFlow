@@ -4,6 +4,7 @@ using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Application.UseCases.Expenses.Update;
+using CashFlow.Application.UseCases.Login;
 using CashFlow.Application.UseCases.Report.Excel;
 using CashFlow.Application.UseCases.Report.PDF;
 using CashFlow.Application.UseCases.User.Register;
@@ -25,23 +26,17 @@ public static class DependencyInjectionExtension
     
     private static void AddUseCases(IServiceCollection services)
     {
-        #region Expense useCases
         services.AddScoped<IRegisterExpenseUseCase, RegisterExpenseUseCase>();
         services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
         services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
         services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
         services.AddScoped<IUpdateExpensesUseCase, UpdateExpenseUseCase>();
-        #endregion Expense useCases
 
-        #region Report useCases
         services.AddScoped<IGenerateExpenseReportExcelUseCase, GenerateExpenseReportExcelUseCase>();
         services.AddScoped<IGenerateExpenseReportPdfUseCase, GenerateExpenseReportPdfUseCase>();
-        #endregion Report useCases
-
-        #region User useCases
 
         services.AddScoped<IUserRegisterUserCase, UserRegisterUseCase>();
 
-        #endregion User useCases
+        services.AddScoped<ILoginUseCase, LoginUseCase>();
     }
 }

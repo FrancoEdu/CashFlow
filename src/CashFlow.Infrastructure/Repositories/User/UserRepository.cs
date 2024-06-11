@@ -24,4 +24,12 @@ internal class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepositor
             .AsNoTracking()
             .AnyAsync(x => x.Email.ToLower().Equals(email.ToLower()));
     }
+
+    public async Task<Domain.Entities.User?> FindByEmail(string email)
+    {
+        return await _context
+            .User
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Email.ToLower().Equals(email.ToLower()));
+    }
 }
