@@ -1,4 +1,4 @@
-﻿using CommonTestUtilities.Requests;
+﻿using CommonTestUtilities.Requests.Expenses;
 using FluentAssertions;
 
 namespace Validators.Test.Expenses.Delete;

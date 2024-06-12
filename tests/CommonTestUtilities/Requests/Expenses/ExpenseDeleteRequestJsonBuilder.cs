@@ -2,7 +2,7 @@
 using CashFlow.Communication.Enums;
 using CommonTestUtilities.Jsons;
 
-namespace CommonTestUtilities.Requests;
+namespace CommonTestUtilities.Requests.Expenses;
 public class ExpenseDeleteRequestJsonBuilder
 {
     public static List<ExpenseRegisterJson> GenerateListOfExpenses(int lenghtList)

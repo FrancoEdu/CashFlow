@@ -2,7 +2,7 @@
 using CashFlow.Communication.Enums;
 using CommonTestUtilities.Jsons;
 
-namespace CommonTestUtilities.Requests;
+namespace CommonTestUtilities.Requests.Expenses;
 public class ExpenseReadOnlyRequestJsonBuilder
 {
     public static IEnumerable<ExpenseRegisterJson> GenerateListOfExpenses(int lenghtList)
